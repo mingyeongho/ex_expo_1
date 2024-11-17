@@ -1,4 +1,10 @@
-import { Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Index() {
   return (
@@ -9,7 +15,16 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text className="text-red-400">
+        Edit app/index.tsx to edit this screen.
+      </Text>
+      <TouchableOpacity>
+        <Text>Opacity Click Me!</Text>
+      </TouchableOpacity>
+      <TouchableHighlight>
+        <Text>Highlight Click Me!</Text>
+      </TouchableHighlight>
+      <ActivityIndicator size="large" />
     </View>
   );
 }
