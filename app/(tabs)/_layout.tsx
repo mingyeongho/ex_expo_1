@@ -15,7 +15,6 @@ const TabsLayout = () => {
             backgroundColor: "#161622",
             borderTopWidth: 1,
             borderTopColor: "#232533",
-            height: 84,
           },
         }}
       >
@@ -69,7 +68,6 @@ const TabsLayout = () => {
           />
         ))}
       </Tabs>
-      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 };

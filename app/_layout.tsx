@@ -28,10 +28,11 @@ export default function RootLayout() {
 
   return (
     <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
-        name="index" // 화면 이름 (파일 이름과 동일)
+        name="index"
         options={{
-          headerShown: false, // 헤더 숨기기
+          headerShown: false,
         }}
       />
     </Stack>
