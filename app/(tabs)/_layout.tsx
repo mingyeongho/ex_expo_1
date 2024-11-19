@@ -2,7 +2,6 @@ import { Text, Image } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import { icons } from "@/constants";
-import { StatusBar } from "expo-status-bar";
 
 const TabsLayout = () => {
   return (
