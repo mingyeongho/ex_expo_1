@@ -1,4 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  KeyboardTypeOptions,
+} from "react-native";
 import React, { useState } from "react";
 import { icons, images } from "@/constants";
 
@@ -8,7 +15,7 @@ type Props = {
   value: string;
   onChange: (e: any) => void;
   otherStyles?: string;
-  keyboardType?: string;
+  keyboardType?: KeyboardTypeOptions;
 };
 
 export const FormField = ({
@@ -32,6 +39,7 @@ export const FormField = ({
           placeholderTextColor="#7b7b8b"
           onChangeText={onChange}
           secureTextEntry={title === "Password" && !showPassword}
+          keyboardType={keyboardType || "default"}
         />
         {title === "Password" && (
           <TouchableOpacity onPress={() => setShowPassword((prev) => !prev)}>

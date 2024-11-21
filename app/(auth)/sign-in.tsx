@@ -19,7 +19,7 @@ const SignIn = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full h-full justify-center px-4 my-6">
+        <View className="w-full h-full min-h-[85vh] justify-center px-4 my-6">
           <Image
             source={images.logo}
             resizeMode="contain"
