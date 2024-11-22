@@ -1,19 +1,30 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Alert, Image, ScrollView, Text, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
 import { Button, FormField } from "@/src/components";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { supabase } from "@/src/lib/supabase";
 
 const SignIn = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-
   const [loading, setLoading] = useState(false);
-  const onSubmit = () => {
-    setLoading(true);
+
+  const onSubmit = async () => {
+    if (!!form.email && !!form.password) {
+      setLoading(true);
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
+
+      if (error) Alert.alert(error.message);
+      router.push("/(tabs)/home");
+    }
   };
 
   return (
