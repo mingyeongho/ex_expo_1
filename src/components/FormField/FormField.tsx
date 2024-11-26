@@ -6,7 +6,7 @@ import {
   Image,
   KeyboardTypeOptions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { icons, images } from "@/constants";
 
 type Props = {
@@ -27,11 +27,16 @@ export const FormField = ({
   keyboardType,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View className={`space-y-2 ${otherStyles}`}>
       <Text className="text-base font-pmedium text-gray-100">{title}</Text>
-      <View className="flex-row w-full h-16 px-4 mt-1 bg-black-100 border-2 border-black-200 rounded-2xl focus:border-secondary items-center">
+      <View
+        className={`flex-row w-full h-16 px-4 mt-1 bg-black-100 border-2 rounded-2xl focus:border-secondary items-center ${
+          isFocused ? "border-secondary" : "border-black-200"
+        } transition-colors`}
+      >
         <TextInput
           className="flex-1 text-white font-psemibold text-base h-full"
           value={value}
@@ -40,6 +45,9 @@ export const FormField = ({
           onChangeText={onChange}
           secureTextEntry={title === "Password" && !showPassword}
           keyboardType={keyboardType || "default"}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          autoCapitalize="none"
         />
         {title === "Password" && (
           <TouchableOpacity onPress={() => setShowPassword((prev) => !prev)}>
