@@ -30,11 +30,15 @@ const SignUp = () => {
       },
     });
 
-    if (error) Alert.alert(error.message);
-    if (!session)
-      Alert.alert("Please check your inbox for email verification!");
-    router.push("/(auth)/sign-in");
-    setLoading(false);
+    if (error) {
+      Alert.alert(error.message);
+      setLoading(false);
+      return;
+    }
+
+    if (session) {
+      return router.push("/(auth)/sign-in");
+    }
   };
 
   return (

@@ -14,16 +14,24 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async () => {
-    if (!!form.email && !!form.password) {
-      setLoading(true);
+    setLoading(true);
 
-      const { error } = await supabase.auth.signInWithPassword({
-        email: form.email,
-        password: form.password,
-      });
+    const {
+      error,
+      data: { session },
+    } = await supabase.auth.signInWithPassword({
+      email: form.email,
+      password: form.password,
+    });
 
-      if (error) Alert.alert(error.message);
-      router.push("/(tabs)/home");
+    if (error) {
+      Alert.alert(error.message);
+      setLoading(false);
+      return;
+    }
+
+    if (session) {
+      return router.push("/(tabs)/home");
     }
   };
 
