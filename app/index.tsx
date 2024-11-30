@@ -1,6 +1,7 @@
 import { images } from "@/constants";
 import { Button } from "@/src/components";
-import { Link, router } from "expo-router";
+import { supabase } from "@/src/lib/supabase";
+import { router } from "expo-router";
 import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -37,7 +38,15 @@ export default function Index() {
           </Text>
           <Button
             label="Continue with Email"
-            onClick={() => router.push("/sign-in")}
+            onClick={async () => {
+              const { data } = await supabase.auth.getUser();
+
+              if (data.user?.id) {
+                return router.push("/(tabs)/home");
+              }
+
+              router.push("/(auth)/sign-in");
+            }}
             containerStyles="w-full mt-7"
           />
         </View>
